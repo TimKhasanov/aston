@@ -1,4 +1,8 @@
 package org.example;
+
+
+import java.util.Arrays;
+
 /**
  * Реализация ArrayList.
  *
@@ -7,6 +11,7 @@ package org.example;
  * @version 1
  */
 public class MyArrayList<T> {
+
     private static final int DEFAULT_CAPACITY = 10;
     private int size;
     private Object[] data;
@@ -39,26 +44,12 @@ public class MyArrayList<T> {
      */
     public void add(T element) {
         //Выполняем проверку на заполненность нашего ArrayList
-        if (size == DEFAULT_CAPACITY) {
+        if (size == data.length) {
             ensureCapacity();
         }
         data[size++] = element;
     }
-    /**
-     * Добавление элемента в коллекцию в позицию index
-     *
-     * @param element добавляемый в коллекцию элемент
-     * @param index индекс элемента
-     */
-    public void add(int index, T element) {
-        //проверяем размер коллекции
-        if (size == DEFAULT_CAPACITY) {
-            ensureCapacity();
-        }
-        System.arraycopy(data, index, data, index + 1, size - index);
-        data[index] = element;
-        size++;
-    }
+
     /**
      * Размер коллекции
      *
@@ -68,25 +59,47 @@ public class MyArrayList<T> {
         return size;
     }
     /**
-     * Метод поиска элемента в коллекции
+     * Метод поиска элемента в коллекции по индексу
+     *
+     * @param index
      * @return выбранный элемент коллекции
      */
     public T get(int index) {
         checkingIndex(index);
         return (T) data[index];
     }
+
+    /**
+     * Метод удаление элемента по заданному элементу
+     *
+     * @param element
+     */
+    public void remove(T element) {
+        for (int i = 0; i < size; i++) {
+            if (data[i].equals(element)) {
+                remove(i);
+            }
+        }
+    }
+
     /**
      * Удаление элемента по заданному индексу
      *
      * @param index индекс удаляемого элемента
      * @throws IndexOutOfBoundsException если элемента с таким index не существует.
      */
-    public T remove(int index) {
+    public void remove(int index) {
         checkingIndex(index);
-        T removeElement = get(index);
         System.arraycopy(data, index + 1, data, index, size - index - 1);
         data[--size] = null;
-        return removeElement;
+
+    }
+    /**
+     * Метод очищает коллекцию
+     */
+    public void clear(){
+        data = new Object[10];
+        size = 0;
     }
     /**
      * Установка элемента по заданному индексу
@@ -108,11 +121,11 @@ public class MyArrayList<T> {
         Object[] elementData = new Object[newCapacity];
         System.arraycopy(data, 0, elementData, 0, size);
         data = elementData;
-
     }
 
     /**
-     @throws IndexOutOfBoundsException будет выброшено,
+     * Проверка по индексу в коллекции
+     * @throws IndexOutOfBoundsException будет выброшено,
      если в коллекции нет элемента соответствующему запросу
      */
     private void checkingIndex(int index) {
@@ -123,12 +136,11 @@ public class MyArrayList<T> {
 
     /**
      * Метод, который выводит элементы находящиеся в коллекции
+     * @return выводит все элементы в коллекции
      */
-    public void arrayContents() {
-        for (Object object: data) {
-            System.out.println(object);
-        }
-
+    @Override
+    public String toString() {
+        return Arrays.toString(data);
     }
 }
 
