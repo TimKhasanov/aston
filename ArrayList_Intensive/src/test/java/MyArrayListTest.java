@@ -14,43 +14,45 @@ public class MyArrayListTest {
             myArrayList.add("Test" + i);
         }
     }
+
     @Test
-    public void whenAdding30RowsTheArrayListShouldBeEqualTo30(){
-        assertEquals(30,myArrayList.size());
+    public void whenAdding30RowsTheArrayListShouldBeEqualTo30() {
+        assertEquals(30, myArrayList.size());
     }
+
     @Test
-    public void addingAnItemToTheMiddleOfACollection(){
+    public void addingAnItemToTheMiddleOfACollection() {
         String newElement = "New Element";
-       // myArrayList.add(15,newElement);
+        myArrayList.add(15, newElement);
         String getElement = myArrayList.get(15);
-        assertEquals(newElement,getElement);
+        assertEquals(newElement, getElement);
     }
+
     @Test
-    public void whenDeletingARowByIndexTheSizeShouldBeReduced(){
+    public void whenDeletingARowByIndexTheSizeShouldBeReduced() {
         myArrayList.remove(12);
-        assertEquals(29,myArrayList.size());
+        assertEquals(29, myArrayList.size());
     }
+
     @Test
-    public void whenDeletingARowByElementTheSizeShouldBeReducedAndTheElementDeleted(){
+    public void whenDeletingARowByElementTheSizeShouldBeReducedAndTheElementDeleted() {
         String testElement = "Test16";
         myArrayList.remove("Test15");
         String getElement = myArrayList.get(15);
-        assertEquals(testElement,getElement);
-        assertEquals(29,myArrayList.size());
+        assertEquals(testElement, getElement);
+        assertEquals(29, myArrayList.size());
     }
+
     @Test
-    public void afterClearingTheCollectionTheSizeShouldBeZero(){
+    public void afterClearingTheCollectionTheSizeShouldBeZero() {
         myArrayList.clear();
-        assertEquals(0,myArrayList.size());
+        assertEquals(0, myArrayList.size());
     }
+
     @Test
-    public void afterRequestingAnElementByIndexTheMethodShouldReturnTheElement(){
+    public void afterRequestingAnElementByIndexTheMethodShouldReturnTheElement() {
         String testElement = "Test15";
         String getElement = myArrayList.get(15);
-        assertEquals(testElement,getElement);
+        assertEquals(testElement, getElement);
     }
-
-
-
-
 }

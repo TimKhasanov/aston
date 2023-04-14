@@ -15,12 +15,13 @@ public class MyArrayList<T> {
     private static final int DEFAULT_CAPACITY = 10;
     private int size;
     private Object[] data;
+
     /**
      * Создает коллекцию с заданным начальным размером
-     * @param capacity размер коллекции при инициализации
      *
+     * @param capacity размер коллекции при инициализации
      * @throws IllegalArgumentException будет выброшено,
-     * при попытке инициализировать коллекцию размером меньше 0
+     *                                  при попытке инициализировать коллекцию размером меньше 0
      */
     public MyArrayList(int capacity) {
         if (capacity < 0) {
@@ -37,17 +38,34 @@ public class MyArrayList<T> {
         data = new Object[DEFAULT_CAPACITY];
         size = 0;
     }
+
     /**
      * Добавление элемента в конец коллекции
      *
      * @param element добавляемый в коллекцию элемент
      */
     public void add(T element) {
-        //Выполняем проверку на заполненность нашего ArrayList
+        //Выполняем проверку на заполненность нашего ArrayList, если заполен увеличиваем коллекцию в 2 раза
         if (size == data.length) {
             ensureCapacity();
         }
         data[size++] = element;
+    }
+
+    /**
+     * Добавление элемента в коллекцию в позицию index
+     *
+     * @param element добавляемый в коллекцию элемент
+     * @param index   индекс элемента
+     */
+    public void add(int index, T element) {
+        //Выполняем проверку на заполненность нашего ArrayList, если заполен увеличиваем коллекцию в 2 раза
+        if (size == data.length) {
+            ensureCapacity();
+        }
+        System.arraycopy(data, index, data, index + 1, size - index);
+        data[index] = element;
+        size++;
     }
 
     /**
@@ -58,6 +76,7 @@ public class MyArrayList<T> {
     public int size() {
         return size;
     }
+
     /**
      * Метод поиска элемента в коллекции по индексу
      *
@@ -94,23 +113,13 @@ public class MyArrayList<T> {
         data[--size] = null;
 
     }
+
     /**
      * Метод очищает коллекцию
      */
-    public void clear(){
+    public void clear() {
         data = new Object[10];
         size = 0;
-    }
-    /**
-     * Установка элемента по заданному индексу
-     *
-     * @param object устанавливаемый элемент
-     * @param index индекс элемента который будет установлен
-     * @throws IndexOutOfBoundsException если элемента с таким index не существует.
-     */
-    public void set(T object, int index) {
-        checkingIndex(index);
-        data[index] = object;
     }
 
     /**
@@ -125,8 +134,9 @@ public class MyArrayList<T> {
 
     /**
      * Проверка по индексу в коллекции
+     *
      * @throws IndexOutOfBoundsException будет выброшено,
-     если в коллекции нет элемента соответствующему запросу
+     *                                   если в коллекции нет элемента соответствующему запросу
      */
     private void checkingIndex(int index) {
         if (index < 0 || index > size)
@@ -136,6 +146,7 @@ public class MyArrayList<T> {
 
     /**
      * Метод, который выводит элементы находящиеся в коллекции
+     *
      * @return выводит все элементы в коллекции
      */
     @Override
