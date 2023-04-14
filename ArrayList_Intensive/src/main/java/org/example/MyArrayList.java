@@ -1,6 +1,4 @@
 package org.example;
-
-
 import java.util.Arrays;
 
 /**
@@ -21,7 +19,7 @@ public class MyArrayList<T> {
      *
      * @param capacity размер коллекции при инициализации
      * @throws IllegalArgumentException будет выброшено,
-     *                                  при попытке инициализировать коллекцию размером меньше 0
+     * при попытке инициализировать коллекцию размером меньше 0
      */
     public MyArrayList(int capacity) {
         if (capacity < 0) {
@@ -80,7 +78,7 @@ public class MyArrayList<T> {
     /**
      * Метод поиска элемента в коллекции по индексу
      *
-     * @param index
+     * @param index передаваемый индекс
      * @return выбранный элемент коллекции
      */
     public T get(int index) {
@@ -91,7 +89,7 @@ public class MyArrayList<T> {
     /**
      * Метод удаление элемента по заданному элементу
      *
-     * @param element
+     * @param element передаваемый элемент
      */
     public void remove(T element) {
         for (int i = 0; i < size; i++) {
@@ -133,10 +131,8 @@ public class MyArrayList<T> {
     }
 
     /**
-     * Проверка по индексу в коллекции
-     *
      * @throws IndexOutOfBoundsException будет выброшено,
-     *                                   если в коллекции нет элемента соответствующему запросу
+     * если в коллекции нет элемента соответствующему запросу
      */
     private void checkingIndex(int index) {
         if (index < 0 || index > size)
