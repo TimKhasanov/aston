@@ -87,6 +87,17 @@ public class MyArrayList<T> {
     }
 
     /**
+     * Метод вставки элемента в коллекцию для сортировки
+     *
+     * @param index   передаваемый индекс
+     * @param element передаваемый элемент
+     */
+    public void set(int index, T element) {
+        checkingIndex(index);
+        data[index] = element;
+    }
+
+    /**
      * Метод удаление элемента по заданному элементу
      *
      * @param element передаваемый элемент
